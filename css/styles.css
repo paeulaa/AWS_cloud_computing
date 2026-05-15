@@ -1,38 +1,49 @@
 :root {
-    --bg: #ffffff;
-    --bg-subtle: #f7f7f7;
-    --bg-muted: #eeeeee;
-    --bg-pressed: #e5e5e5;
-    --border: #dddddd;
-    --border-strong: #999999;
-    --text: #1a1a1a;
-    --text-muted: #666666;
-    --text-faint: #999999;
-    --fill: #1a1a1a;
-    --fill-muted: #888888;
+    --ink: #141413;
+    --accent: #c96542;
+    --accent-hover: #b85a3a;
+    --cream: #faf9f5;
+    --bg: var(--cream);
+    --surface: #ffffff;
+    --bg-subtle: #f3f2ed;
+    --bg-muted: #ebe9e3;
+    --bg-pressed: #e0ddd5;
+    --border: rgba(20, 20, 19, 0.12);
+    --border-strong: rgba(20, 20, 19, 0.28);
+    --text: var(--ink);
+    --text-muted: rgba(20, 20, 19, 0.58);
+    --text-faint: rgba(20, 20, 19, 0.42);
+    --fill: var(--ink);
+    --fill-muted: rgba(20, 20, 19, 0.45);
     --correct-border: #8fa396;
-    --correct-bg: #f4f7f5;
+    --correct-bg: #f0f3f1;
     --correct-text: #4d6356;
     --correct-fill: #8fa396;
-    --wrong-border: #8f6666;
-    --wrong-bg: #f7f3f3;
-    --wrong-text: #5c4040;
-    --wrong-fill: #8f6666;
-    --font: 'Anthropic Serif', 'Noto Serif TC', 'Songti TC', Georgia, serif;
+    --wrong-border:rgb(208, 65, 65);
+    --wrong-bg: #f5f0ef;
+    --wrong-text:rgb(219, 81, 81);
+    --wrong-fill: rgb(208, 65, 65);
+    --font-sans: 'Anthropic Sans', 'PingFang TC', 'PingFang SC', 'Microsoft JhengHei', sans-serif;
+    --font-serif: 'Anthropic Serif', 'Noto Serif TC', 'Songti TC', Georgia, serif;
+    --font-mono: 'Anthropic Mono', 'SF Mono', 'Menlo', monospace;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: var(--font);
+    font-family: var(--font-sans);
     background: var(--bg); color: var(--text);
     padding: 20px; max-width: 800px; margin: 0 auto;
     line-height: 1.7;
 }
-h1 { text-align: center; margin: 20px 0; color: var(--text); font-size: 1.4em; font-weight: 600; }
+h1, h2 {
+    font-family: var(--font-serif);
+    text-align: center; margin: 20px 0; color: var(--text);
+    font-size: 2em; font-weight: 400;
+}
 .stats {
     padding: 16px 20px 14px;
-    background: var(--bg);
+    background: var(--surface);
     border-radius: 8px;
     margin-bottom: 20px;
     position: sticky;
@@ -56,7 +67,8 @@ h1 { text-align: center; margin: 20px 0; color: var(--text); font-size: 1.4em; f
     border-right: 1px solid var(--border);
 }
 .stat:last-child { border-right: none; }
-.stat-label {
+.stats .stat-label {
+    font-family: var(--font-mono);
     display: block;
     font-size: 0.65rem;
     font-weight: 500;
@@ -65,10 +77,11 @@ h1 { text-align: center; margin: 20px 0; color: var(--text); font-size: 1.4em; f
     color: var(--text-faint);
     margin-bottom: 4px;
 }
-.stat-value {
+.stats .stat-value {
+    font-family: var(--font-mono);
     display: block;
     font-size: 1.35rem;
-    font-weight: 600;
+    font-weight: 400;
     font-variant-numeric: tabular-nums;
     color: var(--text);
     line-height: 1.2;
@@ -83,21 +96,29 @@ h1 { text-align: center; margin: 20px 0; color: var(--text); font-size: 1.4em; f
 }
 .progress-fill {
     height: 100%;
-    background: var(--fill);
+    background: var(--accent);
     border-radius: 1px;
     transition: width 0.3s ease;
 }
 .question {
-    background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
     padding: 22px; margin-bottom: 14px; transition: border-color 0.3s, background 0.3s;
 }
 .question.answered-correct { border-color: var(--correct-border); background: var(--correct-bg); }
 .question.answered-wrong { border-color: var(--wrong-border); background: var(--wrong-bg); }
 .q-header {
     display: flex; justify-content: space-between; align-items: center;
-    font-weight: 600; color: var(--text-muted); margin-bottom: 12px; font-size: 0.85em;
+    margin-bottom: 12px; font-size: 0.85em;
 }
-.q-text { margin-bottom: 16px; color: var(--text); }
+.q-header > span {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    color: var(--accent);
+}
+.q-header .btn {
+    font-family: var(--font-sans);
+}
+.q-text { font-family: var(--font-serif); margin-bottom: 16px; color: var(--text); }
 .option {
     display: flex; align-items: flex-start; gap: 12px;
     padding: 10px 14px; margin: 5px 0;
@@ -105,7 +126,7 @@ h1 { text-align: center; margin: 20px 0; color: var(--text); font-size: 1.4em; f
     border: 1px solid var(--border); background: var(--bg-subtle);
 }
 .option:hover { background: var(--bg-muted); border-color: var(--border-strong); }
-.option.selected { background: var(--bg-muted); border-color: var(--fill); }
+.option.selected { background: var(--bg-subtle); border-color: var(--accent); }
 .option.show-correct { background: var(--correct-bg); border-color: var(--correct-border); }
 .option.show-wrong { background: var(--wrong-bg); border-color: var(--wrong-border); }
 
@@ -123,14 +144,15 @@ h1 { text-align: center; margin: 20px 0; color: var(--text); font-size: 1.4em; f
     width: 18px;
     height: 18px;
     margin-top: 0.2em;
-    border: 1.5px solid #b0b0b0;
+    border: 1.5px solid var(--border-strong);
     border-radius: 3px;
-    background: var(--bg);
+    background: var(--surface);
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
     transition: border-color 0.15s, box-shadow 0.15s;
 }
 
 .option-label {
+    font-family: var(--font-sans);
     flex: 1;
     line-height: 1.6;
     padding-top: 0.05em;
@@ -138,10 +160,10 @@ h1 { text-align: center; margin: 20px 0; color: var(--text); font-size: 1.4em; f
 
 .option input[type="radio"]:checked + .option-box,
 .option.selected .option-box {
-    border-color: var(--fill);
-    background: var(--bg-muted);
+    border-color: var(--accent);
+    background: var(--bg-subtle);
     box-shadow:
-        inset 2px 2px 4px rgba(0, 0, 0, 0.14),
+        inset 2px 2px 4px rgba(20, 20, 19, 0.12),
         inset -1px -1px 2px rgba(255, 255, 255, 0.7);
 }
 
@@ -150,7 +172,7 @@ h1 { text-align: center; margin: 20px 0; color: var(--text); font-size: 1.4em; f
     content: '';
     position: absolute;
     inset: 2px;
-    background: var(--fill);
+    background: var(--accent);
     border-radius: 1px;
 }
 
@@ -178,7 +200,11 @@ h1 { text-align: center; margin: 20px 0; color: var(--text); font-size: 1.4em; f
     background: var(--wrong-fill);
 }
 
-.result { margin-top: 10px; padding: 8px 14px; border-radius: 8px; font-size: 0.85em; display: none; }
+.result {
+    font-family: var(--font-sans);
+    margin-top: 10px; padding: 8px 14px; border-radius: 8px;
+    font-size: 0.85em; display: none;
+}
 .result.show { display: block; }
 .result.correct {
     background: var(--correct-bg);
@@ -202,27 +228,27 @@ h1 { text-align: center; margin: 20px 0; color: var(--text); font-size: 1.4em; f
     cursor: pointer;
     font-size: 0.875rem;
     font-weight: 600;
-    font-family: var(--font);
+    font-family: var(--font-sans);
     line-height: 1;
     transition: all 0.15s;
     white-space: nowrap;
 }
 .btn-check {
-    background: var(--fill); color: var(--bg);
+    background: var(--accent); color: var(--cream);
     min-width: 110px;
 }
-.btn-check:hover { background: #333333; }
+.btn-check:hover { background: var(--accent-hover); }
 .btn-check:disabled { cursor: not-allowed; min-width: 36px; }
 .question.answered-correct .btn-check:disabled {
     background: var(--correct-fill);
-    color: var(--bg);
+    color: var(--cream);
 }
 .question.answered-wrong .btn-check:disabled {
     background: var(--wrong-fill);
-    color: var(--bg);
+    color: var(--cream);
 }
 .btn-reset-one {
-    background: var(--bg-muted); color: var(--text-muted);
+    background: var(--surface); color: var(--text-muted);
     border: 1px solid var(--border);
     min-width: 36px;
     padding: 8px 12px;
@@ -230,20 +256,21 @@ h1 { text-align: center; margin: 20px 0; color: var(--text); font-size: 1.4em; f
 .btn-reset-one:hover { background: var(--bg-pressed); color: var(--text); }
 .notes-section { margin-top: 14px; }
 .notes-toggle {
+    font-family: var(--font-serif);
     font-size: 0.8em; color: var(--text-muted); cursor: pointer; user-select: none;
     display: flex; align-items: center; gap: 4px;
 }
-.notes-toggle:hover { color: var(--text); }
+.notes-toggle:hover { color: var(--accent); }
 .notes-area {
     width: 100%; min-height: 60px; margin-top: 8px; padding: 10px;
     border: 1px solid var(--border); border-radius: 8px;
-    font-family: var(--font);
-    font-size: 0.875rem; resize: vertical; background: var(--bg); color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 0.875rem; resize: vertical; background: var(--surface); color: var(--text);
     display: none;
 }
 .notes-area.show { display: block; }
-.notes-area:focus { outline: none; border-color: var(--fill); }
-.has-notes { color: var(--text) !important; font-weight: 600; }
+.notes-area:focus { outline: none; border-color: var(--accent); }
+.has-notes { color: var(--accent) !important; font-weight: 600; }
 .controls {
     display: flex;
     flex-wrap: wrap;
@@ -253,7 +280,7 @@ h1 { text-align: center; margin: 20px 0; color: var(--text); font-size: 1.4em; f
     margin: 20px 0;
 }
 .btn-reset-all {
-    background: var(--bg); color: var(--text-muted);
+    background: var(--surface); color: var(--text-muted);
     border: 1px solid var(--border-strong);
 }
 .btn-reset-all:hover { background: var(--bg-subtle); color: var(--text); }
@@ -264,15 +291,15 @@ h1 { text-align: center; margin: 20px 0; color: var(--text); font-size: 1.4em; f
     border-radius: 8px;
     width: 80px;
     text-align: center;
-    background: var(--bg); color: var(--text);
-    font-family: var(--font);
+    background: var(--surface); color: var(--text);
+    font-family: var(--font-sans);
     font-size: 0.875rem;
 }
-.jump-input:focus { outline: none; border-color: var(--fill); }
-.jump-btn { background: var(--fill); color: var(--bg); }
-.jump-btn:hover { background: #333333; }
+.jump-input:focus { outline: none; border-color: var(--accent); }
+.jump-btn { background: var(--accent); color: var(--cream); }
+.jump-btn:hover { background: var(--accent-hover); }
 
-input[type="radio"] { accent-color: var(--fill); }
+input[type="radio"] { accent-color: var(--accent); }
 
 .back-to-top {
     position: fixed;
@@ -287,7 +314,7 @@ input[type="radio"] { accent-color: var(--fill); }
     padding: 0;
     border: 1px solid var(--border);
     border-radius: 8px;
-    background: var(--bg);
+    background: var(--surface);
     color: var(--text);
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -307,5 +334,5 @@ input[type="radio"] { accent-color: var(--fill); }
 }
 .back-to-top:focus {
     outline: none;
-    border-color: var(--fill);
+    border-color: var(--accent);
 }
