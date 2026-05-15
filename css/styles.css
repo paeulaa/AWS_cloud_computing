@@ -115,6 +115,14 @@ h1, h2 {
     font-weight: 600;
     color: var(--accent);
 }
+.choose-hint {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    color: var(--text-muted);
+}
+.question-multi .choose-hint {
+    color: var(--accent);
+}
 .q-header .btn {
     font-family: var(--font-sans);
 }
@@ -130,11 +138,14 @@ h1, h2 {
 .option.show-correct { background: var(--correct-bg); border-color: var(--correct-border); }
 .option.show-wrong { background: var(--wrong-bg); border-color: var(--wrong-border); }
 
-.option input[type="radio"] {
+/* Hide native radio/checkbox — only show custom .option-box */
+.option input[type="radio"],
+.option input[type="checkbox"] {
     position: absolute;
     opacity: 0;
     width: 0;
     height: 0;
+    margin: 0;
     pointer-events: none;
 }
 
@@ -158,7 +169,7 @@ h1, h2 {
     padding-top: 0.05em;
 }
 
-.option input[type="radio"]:checked + .option-box,
+.option input:checked + .option-box,
 .option.selected .option-box {
     border-color: var(--accent);
     background: var(--bg-subtle);
@@ -167,7 +178,7 @@ h1, h2 {
         inset -1px -1px 2px rgba(255, 255, 255, 0.7);
 }
 
-.option input[type="radio"]:checked + .option-box::after,
+.option input:checked + .option-box::after,
 .option.selected .option-box::after {
     content: '';
     position: absolute;
@@ -183,7 +194,7 @@ h1, h2 {
         inset 2px 2px 4px rgba(77, 99, 86, 0.12),
         inset -1px -1px 2px rgba(255, 255, 255, 0.7);
 }
-.option.show-correct input[type="radio"]:checked + .option-box::after,
+.option.show-correct input:checked + .option-box::after,
 .option.show-correct.selected .option-box::after {
     background: var(--correct-fill);
 }
@@ -195,7 +206,7 @@ h1, h2 {
         inset 2px 2px 4px rgba(92, 64, 64, 0.12),
         inset -1px -1px 2px rgba(255, 255, 255, 0.6);
 }
-.option.show-wrong input[type="radio"]:checked + .option-box::after,
+.option.show-wrong input:checked + .option-box::after,
 .option.show-wrong.selected .option-box::after {
     background: var(--wrong-fill);
 }
