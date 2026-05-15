@@ -18,12 +18,13 @@
     --wrong-bg: #f7f3f3;
     --wrong-text: #5c4040;
     --wrong-fill: #8f6666;
+    --font: 'Anthropic Serif', 'Noto Serif TC', 'Songti TC', Georgia, serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: 'Inter', 'PingFang TC', 'PingFang SC', 'Microsoft JhengHei', sans-serif;
+    font-family: var(--font);
     background: var(--bg); color: var(--text);
     padding: 20px; max-width: 800px; margin: 0 auto;
     line-height: 1.7;
@@ -201,7 +202,7 @@ h1 { text-align: center; margin: 20px 0; color: var(--text); font-size: 1.4em; f
     cursor: pointer;
     font-size: 0.875rem;
     font-weight: 600;
-    font-family: 'Inter', 'PingFang TC', 'PingFang SC', 'Microsoft JhengHei', sans-serif;
+    font-family: var(--font);
     line-height: 1;
     transition: all 0.15s;
     white-space: nowrap;
@@ -236,7 +237,7 @@ h1 { text-align: center; margin: 20px 0; color: var(--text); font-size: 1.4em; f
 .notes-area {
     width: 100%; min-height: 60px; margin-top: 8px; padding: 10px;
     border: 1px solid var(--border); border-radius: 8px;
-    font-family: 'Inter', 'PingFang TC', 'PingFang SC', 'Microsoft JhengHei', sans-serif;
+    font-family: var(--font);
     font-size: 0.875rem; resize: vertical; background: var(--bg); color: var(--text);
     display: none;
 }
@@ -264,7 +265,7 @@ h1 { text-align: center; margin: 20px 0; color: var(--text); font-size: 1.4em; f
     width: 80px;
     text-align: center;
     background: var(--bg); color: var(--text);
-    font-family: 'Inter', 'PingFang TC', 'PingFang SC', 'Microsoft JhengHei', sans-serif;
+    font-family: var(--font);
     font-size: 0.875rem;
 }
 .jump-input:focus { outline: none; border-color: var(--fill); }
@@ -272,3 +273,39 @@ h1 { text-align: center; margin: 20px 0; color: var(--text); font-size: 1.4em; f
 .jump-btn:hover { background: #333333; }
 
 input[type="radio"] { accent-color: var(--fill); }
+
+.back-to-top {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg);
+    color: var(--text);
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.2s, visibility 0.2s, transform 0.2s, background 0.15s, border-color 0.15s;
+}
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.back-to-top:hover {
+    background: var(--bg-subtle);
+    border-color: var(--border-strong);
+}
+.back-to-top:focus {
+    outline: none;
+    border-color: var(--fill);
+}

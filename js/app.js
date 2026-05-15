@@ -40,8 +40,20 @@ function renderQuestions() {
     container.appendChild(frag);
 }
 
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function updateBackToTop() {
+    const btn = document.getElementById('backToTop');
+    if (!btn) return;
+    btn.classList.toggle('visible', window.scrollY > 400);
+}
+
 window.addEventListener('load', function() {
     renderQuestions();
+    updateBackToTop();
+    window.addEventListener('scroll', updateBackToTop, { passive: true });
 
     for (let qNum in state) {
         let radio = document.querySelector('input[name="q' + qNum + '"][value="' + state[qNum].selected + '"]');
