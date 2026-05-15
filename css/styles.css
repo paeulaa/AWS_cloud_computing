@@ -18,10 +18,10 @@
     --correct-border: #8fa396;
     --correct-bg: #f0f3f1;
     --correct-text: #4d6356;
-    --correct-fill: #8fa396;
-    --wrong-border:rgb(208, 65, 65);
+    --correct-fill:rgb(119, 160, 133);
+    --wrong-border:rgb(165, 52, 52);
     --wrong-bg: #f5f0ef;
-    --wrong-text:rgb(219, 81, 81);
+    --wrong-text:rgb(112, 39, 39);
     --wrong-fill: rgb(208, 65, 65);
     --font-sans: 'Anthropic Sans', 'PingFang TC', 'PingFang SC', 'Microsoft JhengHei', sans-serif;
     --font-serif: 'Anthropic Serif', 'Noto Serif TC', 'Songti TC', Georgia, serif;
